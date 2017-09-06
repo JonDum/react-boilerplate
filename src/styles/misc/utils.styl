@@ -1,0 +1,45 @@
+
+// General Stuff
+
+.nowrap
+	white-space nowrap
+
+.faded
+	opacity 0 !important
+
+spacer
+	flex 1
+
+// image styles
+
+img.responsive // borrowing from bootstrap 3
+	display block
+	height auto
+	max-width 100%
+	margin-left auto
+	margin-right auto
+
+video.responsive
+	display block
+	width 100%
+	height auto
+
+img.bordered // add a border to images
+	border 3px solid transparent
+	box-shadow 0 1px 3px rgba(0,0,0,0.2)
+
+img.tac
+	display block
+	margin-left auto
+	margin-right auto
+
+//margins with text
+p, ul, ol, dl
+	+ img
+		margin-top 1.6em * 1.6
+img +
+	p, ul, ol, dl
+		margin-top 1.6em
+
+
+
