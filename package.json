@@ -9,16 +9,16 @@
     "postbuild": "cp -r public/ build/",
     "start": "webpack-dev-server --progress --colors",
     "lint": "eslint --ext js --ext jsx src || exit 0",
-    "dev": " webpack-dashboard -- webpack-dev-server",
+    "dev": "webpack-dashboard -- webpack-dev-server",
     "test": "export NODE_ENV=test && jest"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JonDum/webpack-babel-react-starter"
+    "url": "https://github.com/JonDum/react-boilerplate"
   },
   "author": "Jonathan Dumaine",
   "license": "MIT",
-  "homepage": "https://github.com/JonDum/webpack-babel-react-starter#readme",
+  "homepage": "https://github.com/JonDum/react-boilerplate#readme",
   "dependencies": {
     "react": "15.6.1",
     "react-dom": "15.4.2"
