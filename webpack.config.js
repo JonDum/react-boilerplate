@@ -16,20 +16,26 @@ module.exports = {
 
 	output: {
 		publicPath: '/',
-		path: path.join(__dirname, 'public'),
-		filename: 'bundle.js'
+		path: path.join(__dirname, 'build'),
+		filename: 'assets/js/entry.js',
+		chunkFilename: 'assets/js/chunk.[name].js',
 	},
 
 	resolve: {
 		extensions: ['.js', '.styl', '.html'],
-		modules: ['src/app', 'src', 'node_modules'],
+		modules: ['src', 'node_modules'],
+		alias: {
+			forcejs: 'lib/forcejs/index.js',
+			//'react': 'inferno-compat',
+			//'react-dom': 'inferno-compat'
+		}
 	},
 
 	module: {
 		loaders
 	},
 
-	devtool: 'eval-source-map',
+	devtool: 'cheap-module-source-map',
 
 	devServer: {
 		contentBase: "./public",
@@ -37,6 +43,18 @@ module.exports = {
 		hot: true,
 		inline: true,
 		historyApiFallback: true,
+		proxy: {
+			'/services/data': {
+				target: "https://raprec.my.salesforce.com",
+				changeorigin: true,
+				secure: false,
+			},
+			'/services/apexrest': {
+				target: "https://raprec.my.salesforce.com",
+				changeorigin: true,
+				secure: false,
+			}
+		}
 	},
 
 	plugins: [

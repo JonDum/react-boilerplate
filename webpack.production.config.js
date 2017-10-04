@@ -1,47 +1,78 @@
 
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-var config = require('./webpack.config.js');
+let config = require('./webpack.config.js');
 
-config.output = {
-	publicPath: './',
-	path: path.join(__dirname, 'build'),
-	filename: 'js/[chunkhash].js'
-};
+config.devtool = '';
+
+config.output.filename = 'assets/js/entry.[hash].js';
+config.output.chunkFilename = 'assets/js/chunk.[chunkhash].js';
 
 config.plugins = [
-	new WebpackCleanupPlugin(),
 	new webpack.DefinePlugin({
 		DEBUG: false,
 		PRODUCTION: true,
 		'process.env': {
-			NODE_ENV: '"production"'
+			NODE_ENV: JSON.stringify('production')
 		},
 	}),
-	new webpack.optimize.UglifyJsPlugin({
-		compress: {
-			warnings: false,
-			screw_ie8: true,
-			drop_console: true,
-			drop_debugger: true
-		}
-	}),
+	new WebpackCleanupPlugin(),
 	new webpack.optimize.OccurrenceOrderPlugin(),
 	new ExtractTextPlugin({
 		filename: 'style.css',
 		allChunks: true
 	}),
+
+	new UglifyJSPlugin({
+		beautify: false,
+		ecma: 7,
+		output: {
+			comments: false,
+		},
+		compress: {
+			comparisons: false,
+			warnings: false,
+			screw_ie8: true,
+			drop_console: true,
+			drop_debugger: true,
+			dead_code: true,
+			unused: true,
+		},
+		mangle: true,
+	}),
+
 	new HtmlWebpackPlugin({
 		template: './src/template.html',
-		files: {
-			css: ['style.css'],
-			js: ['bundle.js'],
-		}
-	})
+		minify: {
+			removeComments: true,
+			collapseWhitespace: true,
+			removeRedundantAttributes: true,
+			useShortDoctype: true,
+			removeEmptyAttributes: true,
+			removeStyleLinkTypeAttributes: true,
+			keepClosingSlash: true,
+			minifyJS: true,
+			minifyCSS: true,
+			minifyURLs: true,
+		},
+		//files: {
+			//css: ['style.css'],
+			//js: ['bundle.js'],
+		//}
+	}),
+
+	new HtmlWebpackPlugin({
+		template: './src/template-salesforce.page',
+		filename: 'dispatch.page',
+	}),
+
+	// don't include all moment's locales
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 ]
 
 module.exports = config;

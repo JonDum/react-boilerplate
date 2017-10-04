@@ -1,7 +1,7 @@
 module.exports = [
 	{
-		test: /\.js?$/,
-		exclude: /(node_modules|bower_components|public)/,
+		test: /\.jsx*$/,
+		exclude: /(node_modules|bower_components|public\/)/,
 		loader: "babel-loader"
 	},
 	{
@@ -13,7 +13,7 @@ module.exports = [
 		test: /\.styl$/,
 		use: [
 			{loader: 'style-loader'},
-			{loader: 'css-loader'},
+			{loader: 'css-loader', options: {url: false}},
 			{loader: 'stylus-loader', options: { use: [(require('nib')())], import: [__dirname + '/src/styles/includes/*']}}
 		],
 	},
@@ -51,5 +51,5 @@ module.exports = [
 		test: /\.png/,
 		exclude: /(node_modules|bower_components)/,
 		loader: "url-loader?limit=10000&mimetype=image/png"
-	}
+	},
 ];
