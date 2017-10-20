@@ -1,3 +1,5 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = [
 	{
 		test: /\.jsx*$/,
@@ -11,11 +13,13 @@ module.exports = [
 	},
 	{
 		test: /\.styl$/,
-		use: [
-			{loader: 'style-loader'},
-			{loader: 'css-loader', options: {url: false}},
-			{loader: 'stylus-loader', options: { use: [(require('nib')())], import: [__dirname + '/src/styles/includes/*']}}
-		],
+		use: ExtractTextPlugin.extract({
+			fallback: 'style-loader',
+			use:[
+				{loader: 'css-loader', options: {url: false}},
+				{loader: 'stylus-loader', options: { use: [(require('nib')())], import: [__dirname + '/src/styles/includes/*']}}
+			],
+		})
 	},
 	{
 		test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -51,5 +55,6 @@ module.exports = [
 		test: /\.png/,
 		exclude: /(node_modules|bower_components)/,
 		loader: "url-loader?limit=10000&mimetype=image/png"
-	},
+	}
 ];
+

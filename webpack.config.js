@@ -25,9 +25,6 @@ module.exports = {
 		extensions: ['.js', '.styl', '.html'],
 		modules: ['src', 'node_modules'],
 		alias: {
-			forcejs: 'lib/forcejs/index.js',
-			//'react': 'inferno-compat',
-			//'react-dom': 'inferno-compat'
 		}
 	},
 
@@ -43,18 +40,6 @@ module.exports = {
 		hot: true,
 		inline: true,
 		historyApiFallback: true,
-		proxy: {
-			'/services/data': {
-				target: "https://raprec.my.salesforce.com",
-				changeorigin: true,
-				secure: false,
-			},
-			'/services/apexrest': {
-				target: "https://raprec.my.salesforce.com",
-				changeorigin: true,
-				secure: false,
-			}
-		}
 	},
 
 	plugins: [
@@ -66,7 +51,7 @@ module.exports = {
 			PRODUCTION: false,
 		}),
 		new ExtractTextPlugin({
-			filename: 'style.css',
+			filename: 'styles.css',
 			allChunks: true
 		}),
 		new DashboardPlugin(),

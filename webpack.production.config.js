@@ -24,7 +24,7 @@ config.plugins = [
 	new WebpackCleanupPlugin(),
 	new webpack.optimize.OccurrenceOrderPlugin(),
 	new ExtractTextPlugin({
-		filename: 'style.css',
+		filename: 'styles.css',
 		allChunks: true
 	}),
 
