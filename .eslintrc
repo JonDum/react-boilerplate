@@ -1,7 +1,9 @@
 {
   "globals": {
     "__DEV__": true,
-    "__SERVER__": true
+    "__SERVER__": true,
+    "DEBUG": true,
+    "PRODUCTION": false
   },
   "extends": [
     "plugin:react/recommended"
@@ -77,6 +79,7 @@
     "ecmaVersion": 6,
     "ecmaFeatures": {
       "jsx": true
+      "decorators": true
     }
   }
 }
