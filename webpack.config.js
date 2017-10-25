@@ -23,7 +23,7 @@ module.exports = {
 
 	resolve: {
 		extensions: ['.js', '.styl', '.html'],
-		modules: ['src', 'node_modules'],
+		modules: ['src', 'src/app', 'node_modules'],
 		alias: {
 		}
 	},
