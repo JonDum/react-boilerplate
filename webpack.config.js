@@ -9,6 +9,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 
+	mode: 'development',
+
 	entry: [
 		'react-hot-loader/patch',
 		'./src/main.js',
@@ -29,7 +31,7 @@ module.exports = {
 	},
 
 	module: {
-		loaders
+		rules: loaders
 	},
 
 	devtool: 'cheap-module-source-map',
@@ -43,24 +45,25 @@ module.exports = {
 	},
 
 	plugins: [
+
 		new webpack.NoEmitOnErrorsPlugin(),
+
 		new webpack.NamedModulesPlugin(),
+
 		new webpack.HotModuleReplacementPlugin(),
+
 		new webpack.DefinePlugin({
 			DEBUG: true,
 			PRODUCTION: false,
 		}),
+
 		new ExtractTextPlugin({
 			filename: 'styles.css',
 			allChunks: true
 		}),
+
 		new DashboardPlugin(),
-		new HtmlWebpackPlugin({
-			template: './src/template.html',
-			files: {
-				css: ['style.css'],
-				js: ['bundle.js'],
-			}
-		}),
+
+		new HtmlWebpackPlugin({template: './src/template.html'})
   ]
 };
