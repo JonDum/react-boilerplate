@@ -9,7 +9,6 @@
     "postbuild": "cp -r public/ build/",
     "start": "webpack-dev-server --progress --colors",
     "lint": "eslint --ext js --ext jsx src || exit 0",
-    "dev": "webpack-dashboard -- webpack-dev-server",
     "test": "export NODE_ENV=test && jest"
   },
   "repository": {
@@ -53,7 +52,6 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.6.0",
     "webpack-cleanup-plugin": "^0.5.1",
-    "webpack-dashboard": "^1.1.1",
     "webpack-dev-server": "^3.1.4"
   },
   "jest": {

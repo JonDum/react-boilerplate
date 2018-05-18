@@ -4,7 +4,6 @@ var path = require('path');
 var loaders = require('./webpack.loaders');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var DashboardPlugin = require('webpack-dashboard/plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -38,7 +37,6 @@ module.exports = {
 
 	devServer: {
 		contentBase: "./public",
-		noInfo: true,
 		hot: true,
 		inline: true,
 		historyApiFallback: true,
@@ -61,8 +59,6 @@ module.exports = {
 			filename: 'styles.css',
 			allChunks: true
 		}),
-
-		new DashboardPlugin(),
 
 		new HtmlWebpackPlugin({template: './src/template.html'})
   ]
