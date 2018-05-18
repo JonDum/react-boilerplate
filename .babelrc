@@ -1,11 +1,18 @@
 {
-	"presets": ["env", "react"],
+	"presets": [
+		"react", ["env", {
+			"targets": {
+				"browsers": ["last 2 versions"]
+			}
+		}],
+		"stage-0"
+	],
 	"plugins": [
+		"transform-async-to-generator",
 		"transform-runtime",
 		"transform-decorators-legacy",
 		"transform-class-properties",
-		"react-html-attrs",
-		["import", {
+		"react-html-attrs", ["import", {
 			"libraryName": "antd",
 			"style": "css"
 		}]
